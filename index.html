@@ -7,127 +7,92 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #F7F6F2; --surface: #FFFFFF; --surface2: #F0EFE9;
-    --border: #E2E0D8; --text: #1A1916; --text2: #6B6860; --text3: #9E9C96;
-    --green: #1D9E75; --green-bg: #E1F5EE; --green-border: #5DCAA5;
+    --bg: #EBF0F8; --surface: #FFFFFF; --surface2: #DDE6F2;
+    --border: #B8CCE4; --text: #0D1B35; --text2: #3A5578; --text3: #7A96B0;
+    --green: #1455A4; --green-bg: #DCE9F8; --green-border: #4A85C8;
     --amber: #B07A10; --amber-bg: #FEF3DA; --amber-border: #E8B84B;
     --red: #993C1D; --red-bg: #FAECE7; --red-border: #F0997B;
-    --blue: #185FA5; --blue-bg: #E6F1FB; --blue-border: #85B7EB;
+    --blue: #0D3B7A; --blue-bg: #D4E5F7; --blue-border: #3A7BC8;
     --radius: 12px; --radius-sm: 8px;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body { font-family: 'Noto Sans JP', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; }
-
-  /* ===== AUTH SCREENS ===== */
   .auth-wrap { display: flex; align-items: center; justify-content: center; min-height: 100vh; padding: 1rem; }
   .auth-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 2rem; width: 100%; max-width: 420px; }
   .auth-logo { font-size: 22px; font-weight: 700; text-align: center; margin-bottom: 1.5rem; }
-  .auth-logo span { color: var(--green); }
+  .auth-logo span { color: #4A85C8; }
   .auth-tabs { display: flex; gap: 4px; background: var(--surface2); border-radius: var(--radius-sm); padding: 4px; margin-bottom: 1.5rem; }
   .auth-tab { flex: 1; text-align: center; padding: 8px; font-size: 13px; font-family: 'Noto Sans JP', sans-serif; border: none; background: transparent; color: var(--text2); cursor: pointer; border-radius: 6px; font-weight: 400; }
   .auth-tab.active { background: var(--surface); color: var(--text); font-weight: 500; border: 1px solid var(--border); }
   .form-group { margin-bottom: 1rem; }
   .form-group label { display: block; font-size: 13px; color: var(--text2); margin-bottom: 6px; }
-  .form-group input, .form-group select {
-    width: 100%; font-family: 'Noto Sans JP', sans-serif; font-size: 14px;
-    border: 1px solid var(--border); border-radius: var(--radius-sm);
-    padding: 10px 14px; background: var(--surface); color: var(--text); outline: none;
-  }
+  .form-group input, .form-group select { width: 100%; font-family: 'Noto Sans JP', sans-serif; font-size: 14px; border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 10px 14px; background: var(--surface); color: var(--text); outline: none; }
   .form-group input:focus, .form-group select:focus { border-color: var(--green-border); }
-  .btn-primary {
-    width: 100%; padding: 12px; font-family: 'Noto Sans JP', sans-serif;
-    font-size: 14px; font-weight: 500; background: var(--green); color: #fff;
-    border: none; border-radius: var(--radius-sm); cursor: pointer; transition: opacity 0.15s;
-  }
+  .btn-primary { width: 100%; padding: 12px; font-family: 'Noto Sans JP', sans-serif; font-size: 14px; font-weight: 500; background: #1455A4; color: #fff; border: none; border-radius: var(--radius-sm); cursor: pointer; transition: opacity 0.15s; }
   .btn-primary:hover { opacity: 0.9; }
-  .btn-primary:disabled { opacity: 0.5; cursor: not-allowed; }
   .auth-msg { font-size: 13px; text-align: center; margin-top: 1rem; min-height: 20px; }
-  .msg-ok { color: var(--green); }
-  .msg-err { color: var(--red); }
-
-  /* ===== MAIN APP ===== */
+  .msg-ok { color: var(--green); } .msg-err { color: var(--red); }
   .app-wrap { display: none; max-width: 680px; margin: 0 auto; padding: 2rem 1rem; }
   .top-bar { display: flex; align-items: center; justify-content: space-between; margin-bottom: 2rem; }
   .logo { font-size: 20px; font-weight: 700; letter-spacing: -0.5px; }
-  .logo span { color: var(--green); }
+  .logo span { color: #4A85C8; }
   .user-info { display: flex; align-items: center; gap: 10px; }
   .avatar { width: 36px; height: 36px; border-radius: 50%; background: var(--green-bg); color: var(--green); font-size: 14px; font-weight: 700; display: flex; align-items: center; justify-content: center; }
-  .user-name { font-size: 14px; font-weight: 500; }
-  .user-dept { font-size: 12px; color: var(--text3); }
+  .user-name { font-size: 14px; font-weight: 500; } .user-dept { font-size: 12px; color: var(--text3); }
   .logout-btn { font-size: 12px; color: var(--text3); background: none; border: none; cursor: pointer; padding: 4px 8px; }
   .logout-btn:hover { color: var(--red); }
-
-  .clock-card { background: var(--text); border-radius: var(--radius); padding: 2rem; margin-bottom: 1rem; display: flex; align-items: center; justify-content: space-between; }
+  .clock-card { background: #0D1B35; border-radius: var(--radius); padding: 2rem; margin-bottom: 1rem; display: flex; align-items: center; justify-content: space-between; }
   .clock-time { font-family: 'DM Mono', monospace; font-size: 52px; font-weight: 500; color: #FFF; letter-spacing: -1px; line-height: 1; }
   .clock-date { font-size: 13px; color: #9E9C96; margin-top: 8px; }
   .status-pill { display: flex; align-items: center; gap: 8px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.12); border-radius: 100px; padding: 8px 16px; font-size: 13px; color: #FFF; }
   .status-dot { width: 8px; height: 8px; border-radius: 50%; background: #888; transition: background 0.3s; }
-
   .btn-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 1rem; }
   .punch-btn { font-family: 'Noto Sans JP', sans-serif; font-size: 14px; font-weight: 500; padding: 14px 8px; border-radius: var(--radius-sm); border: 1px solid; cursor: pointer; transition: transform 0.1s; display: flex; flex-direction: column; align-items: center; gap: 6px; }
   .punch-btn:active { transform: scale(0.97); }
-  .punch-btn:disabled { opacity: 0.4; cursor: not-allowed; }
   .punch-btn .icon { font-size: 18px; }
-  .btn-in    { background: var(--green-bg); color: var(--green); border-color: var(--green-border); }
+  .btn-in { background: var(--green-bg); color: var(--green); border-color: var(--green-border); }
   .btn-break { background: var(--amber-bg); color: var(--amber); border-color: var(--amber-border); }
-  .btn-ret   { background: var(--blue-bg);  color: var(--blue);  border-color: var(--blue-border); }
-  .btn-out   { background: var(--red-bg);   color: var(--red);   border-color: var(--red-border); }
-
+  .btn-ret { background: var(--blue-bg); color: var(--blue); border-color: var(--blue-border); }
+  .btn-out { background: var(--red-bg); color: var(--red); border-color: var(--red-border); }
   .card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.25rem; margin-bottom: 1rem; }
   .card-title { font-size: 12px; font-weight: 500; color: var(--text3); margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 0.5px; }
-
   .tabs { display: flex; gap: 4px; background: var(--surface2); border-radius: var(--radius-sm); padding: 4px; margin-bottom: 1rem; }
   .tab { flex: 1; text-align: center; padding: 8px; font-size: 13px; font-family: 'Noto Sans JP', sans-serif; border: none; background: transparent; color: var(--text2); cursor: pointer; border-radius: 6px; font-weight: 400; }
   .tab.active { background: var(--surface); color: var(--text); font-weight: 500; border: 1px solid var(--border); }
-  .page { display: none; }
-  .page.active { display: block; }
-
+  .page { display: none; } .page.active { display: block; }
   .log-list { max-height: 180px; overflow-y: auto; }
   .log-item { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid var(--border); font-size: 14px; }
   .log-item:last-child { border-bottom: none; }
-  .log-type { font-weight: 500; }
-  .log-time { font-family: 'DM Mono', monospace; font-size: 13px; color: var(--text2); }
+  .log-type { font-weight: 500; } .log-time { font-family: 'DM Mono', monospace; font-size: 13px; color: var(--text2); }
   .empty { text-align: center; color: var(--text3); font-size: 13px; padding: 2rem 0; }
-
   .metrics { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 1rem; }
   .metric { background: var(--surface2); border-radius: var(--radius-sm); padding: 1rem; text-align: center; }
   .metric-val { font-size: 22px; font-weight: 700; color: var(--text); font-family: 'DM Mono', monospace; }
   .metric-label { font-size: 11px; color: var(--text3); margin-top: 4px; }
-
   table { width: 100%; border-collapse: collapse; font-size: 13px; }
   th { text-align: left; padding: 8px 10px; color: var(--text3); font-weight: 400; border-bottom: 1px solid var(--border); }
   td { padding: 10px 10px; border-bottom: 1px solid var(--border); color: var(--text); }
   tr:last-child td { border-bottom: none; }
   .badge { display: inline-block; padding: 2px 10px; border-radius: 20px; font-size: 11px; font-weight: 500; }
-  .badge-ok   { background: var(--green-bg); color: var(--green); }
-  .badge-now  { background: var(--amber-bg); color: var(--amber); }
-  .badge-short{ background: var(--red-bg);   color: var(--red); }
-
+  .badge-ok { background: var(--green-bg); color: var(--green); }
+  .badge-now { background: var(--amber-bg); color: var(--amber); }
+  .badge-short { background: var(--red-bg); color: var(--red); }
   .summary-row { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid var(--border); font-size: 14px; }
   .summary-row:last-child { border-bottom: none; }
-  .summary-label { color: var(--text2); }
-  .summary-val { font-weight: 500; font-family: 'DM Mono', monospace; }
-
+  .summary-label { color: var(--text2); } .summary-val { font-weight: 500; font-family: 'DM Mono', monospace; }
   #cal-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; text-align: center; font-size: 12px; margin-top: 4px; }
   .cal-head { font-weight: 500; color: var(--text3); padding: 4px 0; }
   .cal-day { padding: 6px 2px; border-radius: 6px; }
   .cal-today { border: 1px solid var(--border); font-weight: 500; }
   .cal-in { background: var(--green-bg); color: var(--green); }
   .cal-wip { background: var(--amber-bg); color: var(--amber); }
-
   .export-btn { font-family: 'Noto Sans JP', sans-serif; font-size: 12px; font-weight: 500; padding: 6px 12px; border: 1px solid var(--border); border-radius: var(--radius-sm); background: var(--surface); color: var(--text2); cursor: pointer; float: right; }
   .export-btn:hover { background: var(--surface2); }
-
   .sync-status { display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--text3); margin-top: 8px; justify-content: flex-end; }
   .sync-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green); }
   .sync-dot.err { background: var(--red); }
-
   .toast { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%) translateY(80px); background: var(--text); color: #fff; font-size: 13px; font-weight: 500; padding: 10px 20px; border-radius: 100px; transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1); pointer-events: none; z-index: 999; white-space: nowrap; }
   .toast.show { transform: translateX(-50%) translateY(0); }
-
-  .api-notice { background: var(--amber-bg); border: 1px solid var(--amber-border); border-radius: var(--radius-sm); padding: 10px 14px; font-size: 12px; color: var(--amber); margin-bottom: 1rem; }
-  .api-notice a { color: var(--blue); }
-
   @media (max-width: 480px) {
     .clock-time { font-size: 36px; }
     .btn-grid { grid-template-columns: repeat(2, 1fr); }
@@ -136,106 +101,57 @@
 </style>
 </head>
 <body>
-
-<!-- ===== 認証画面 ===== -->
 <div class="auth-wrap" id="auth-wrap">
   <div class="auth-card">
     <div class="auth-logo">打刻<span>.</span>システム</div>
-
-    <div id="api-notice" class="api-notice" style="display:none">
-      ⚠️ Apps Script URLが未設定です。<br>
-      このファイルの先頭の <code>GAS_URL</code> に取得したURLを貼り付けてください。
-    </div>
-
     <div class="auth-tabs">
       <button class="auth-tab active" onclick="switchAuthTab('login')">ログイン</button>
       <button class="auth-tab" onclick="switchAuthTab('register')">新規登録</button>
     </div>
-
-    <!-- ログイン -->
     <div id="login-form">
-      <div class="form-group">
-        <label>メールアドレス</label>
-        <input type="email" id="login-email" placeholder="yamada@example.com" />
-      </div>
-      <div class="form-group">
-        <label>パスワード</label>
-        <input type="password" id="login-pass" placeholder="••••••••" />
-      </div>
+      <div class="form-group"><label>メールアドレス</label><input type="email" id="login-email" placeholder="yamada@example.com"/></div>
+      <div class="form-group"><label>パスワード</label><input type="password" id="login-pass" placeholder="••••••••"/></div>
       <button class="btn-primary" onclick="doLogin()">ログイン</button>
       <div class="auth-msg" id="login-msg"></div>
     </div>
-
-    <!-- 新規登録 -->
     <div id="register-form" style="display:none">
-      <div class="form-group">
-        <label>氏名</label>
-        <input type="text" id="reg-name" placeholder="山田 太郎" />
-      </div>
-      <div class="form-group">
-        <label>メールアドレス</label>
-        <input type="email" id="reg-email" placeholder="yamada@example.com" />
-      </div>
-      <div class="form-group">
-        <label>部署</label>
-        <input type="text" id="reg-dept" placeholder="営業部" />
-      </div>
-      <div class="form-group">
-        <label>パスワード</label>
-        <input type="password" id="reg-pass" placeholder="8文字以上" />
-      </div>
+      <div class="form-group"><label>氏名</label><input type="text" id="reg-name" placeholder="山田 太郎"/></div>
+      <div class="form-group"><label>メールアドレス</label><input type="email" id="reg-email" placeholder="yamada@example.com"/></div>
+      <div class="form-group"><label>部署</label><input type="text" id="reg-dept" placeholder="営業部"/></div>
+      <div class="form-group"><label>パスワード</label><input type="password" id="reg-pass" placeholder="8文字以上"/></div>
       <button class="btn-primary" onclick="doRegister()">登録する</button>
       <div class="auth-msg" id="reg-msg"></div>
     </div>
   </div>
 </div>
-
-<!-- ===== メインアプリ ===== -->
 <div class="app-wrap" id="app-wrap">
   <div class="top-bar">
     <div class="logo">打刻<span>.</span>システム</div>
     <div class="user-info">
       <div class="avatar" id="user-avatar">山</div>
-      <div>
-        <div class="user-name" id="user-name-disp">-</div>
-        <div class="user-dept" id="user-dept-disp">-</div>
-      </div>
+      <div><div class="user-name" id="user-name-disp">-</div><div class="user-dept" id="user-dept-disp">-</div></div>
       <button class="logout-btn" onclick="doLogout()">ログアウト</button>
     </div>
   </div>
-
   <div class="clock-card">
-    <div>
-      <div class="clock-time" id="clock">--:--:--</div>
-      <div class="clock-date" id="today-date"></div>
-    </div>
-    <div class="status-pill">
-      <div class="status-dot" id="status-dot"></div>
-      <span id="status-label">未打刻</span>
-    </div>
+    <div><div class="clock-time" id="clock">--:--:--</div><div class="clock-date" id="today-date"></div></div>
+    <div class="status-pill"><div class="status-dot" id="status-dot"></div><span id="status-label">未打刻</span></div>
   </div>
-
   <div class="btn-grid">
-    <button class="punch-btn btn-in"    onclick="punch('出勤')"><span class="icon">☀️</span>出勤</button>
+    <button class="punch-btn btn-in" onclick="punch('出勤')"><span class="icon">☀️</span>出勤</button>
     <button class="punch-btn btn-break" onclick="punch('休憩開始')"><span class="icon">☕</span>休憩</button>
-    <button class="punch-btn btn-ret"   onclick="punch('休憩終了')"><span class="icon">🔄</span>戻り</button>
-    <button class="punch-btn btn-out"   onclick="punch('退勤')"><span class="icon">🌙</span>退勤</button>
+    <button class="punch-btn btn-ret" onclick="punch('休憩終了')"><span class="icon">🔄</span>戻り</button>
+    <button class="punch-btn btn-out" onclick="punch('退勤')"><span class="icon">🌙</span>退勤</button>
   </div>
-
   <div class="card">
     <div class="card-title">本日のログ</div>
     <div class="log-list" id="today-log"><div class="empty">打刻記録はありません</div></div>
-    <div class="sync-status" id="sync-status" style="display:none">
-      <div class="sync-dot" id="sync-dot"></div>
-      <span id="sync-text">同期済み</span>
-    </div>
+    <div class="sync-status" id="sync-status" style="display:none"><div class="sync-dot" id="sync-dot"></div><span id="sync-text">同期済み</span></div>
   </div>
-
   <div class="tabs">
     <button class="tab active" onclick="switchTab(0)">履歴</button>
     <button class="tab" onclick="switchTab(1)">月次レポート</button>
   </div>
-
   <div class="page active" id="page-0">
     <div class="metrics">
       <div class="metric"><div class="metric-val" id="m-days">0</div><div class="metric-label">出勤日数</div></div>
@@ -244,13 +160,10 @@
     </div>
     <div class="card">
       <div class="card-title">打刻履歴 <button class="export-btn" onclick="exportCSV()">CSV出力</button></div>
-      <table>
-        <thead><tr><th>日付</th><th>出勤</th><th>退勤</th><th>労働時間</th><th>状態</th></tr></thead>
-        <tbody id="history-body"><tr><td colspan="5" class="empty">記録がありません</td></tr></tbody>
-      </table>
+      <table><thead><tr><th>日付</th><th>出勤</th><th>退勤</th><th>労働時間</th><th>状態</th></tr></thead>
+      <tbody id="history-body"><tr><td colspan="5" class="empty">記録がありません</td></tr></tbody></table>
     </div>
   </div>
-
   <div class="page" id="page-1">
     <div class="card">
       <div class="card-title">月次サマリー</div>
@@ -261,271 +174,36 @@
       <div class="summary-row"><span class="summary-label">休憩時間（合計）</span><span class="summary-val" id="r-break">0分</span></div>
       <div class="summary-row"><span class="summary-label">残業時間（推定）</span><span class="summary-val" id="r-overtime">0時間</span></div>
     </div>
-    <div class="card">
-      <div class="card-title">月間カレンダー</div>
-      <div id="cal-grid"></div>
-    </div>
+    <div class="card"><div class="card-title">月間カレンダー</div><div id="cal-grid"></div></div>
   </div>
 </div>
-
 <div class="toast" id="toast"></div>
-
 <script>
-// ============================================================
-// ★ ここにApps ScriptのデプロイURLを貼り付けてください ★
-// ============================================================
 const GAS_URL = 'https://script.google.com/macros/s/AKfycbz1Rq5oivKtwwN633Q_YIxYRmZUSqPA8pLuoNtK8ypdDFyRZr5BsqGux1DSbIyo2yAnuA/exec';
-// ============================================================
-
-let currentUser = null;
-let records = [];
-let todayLog = [];
-
-// ---- 起動チェック ----
-window.onload = () => {
-  if (!GAS_URL || GAS_URL === 'https://script.google.com/macros/s/AKfycbz1Rq5oivKtwwN633Q_YIxYRmZUSqPA8pLuoNtK8ypdDFyRZr5BsqGux1DSbIyo2yAnuA/exec') {
-    document.getElementById('api-notice').style.display = 'block';
-  }
-  const saved = localStorage.getItem('dakoku_user');
-  if (saved) {
-    currentUser = JSON.parse(saved);
-    showApp();
-  }
-  updateClock();
-  setInterval(updateClock, 1000);
+let currentUser=null,records=[],todayLog=[];
+window.onload=()=>{
+  const saved=localStorage.getItem('dakoku_user');
+  if(saved){currentUser=JSON.parse(saved);showApp();}
+  updateClock();setInterval(updateClock,1000);
 };
-
-// ---- 時計 ----
-function updateClock() {
-  const d = new Date();
-  document.getElementById('clock').textContent = d.toTimeString().slice(0,8);
-  document.getElementById('today-date').textContent =
-    d.toLocaleDateString('ja-JP', {year:'numeric',month:'long',day:'numeric',weekday:'long'});
-}
-
-// ---- 認証タブ ----
-function switchAuthTab(tab) {
-  document.querySelectorAll('.auth-tab').forEach((t,i) => t.classList.toggle('active', (tab==='login'&&i===0)||(tab==='register'&&i===1)));
-  document.getElementById('login-form').style.display = tab==='login' ? 'block' : 'none';
-  document.getElementById('register-form').style.display = tab==='register' ? 'block' : 'none';
-}
-
-// ---- API呼び出し ----
-async function callAPI(data) {
-  const res = await fetch(GAS_URL, {
-    method: 'POST',
-    body: JSON.stringify(data)
-  });
-  return await res.json();
-}
-
-// ---- ログイン ----
-async function doLogin() {
-  const email = document.getElementById('login-email').value.trim();
-  const pass  = document.getElementById('login-pass').value;
-  const msg   = document.getElementById('login-msg');
-  if (!email || !pass) { msg.className='auth-msg msg-err'; msg.textContent='入力してください'; return; }
-  msg.className='auth-msg'; msg.textContent='確認中...';
-  try {
-    const r = await callAPI({action:'login', email, password:pass});
-    if (r.success) {
-      currentUser = {empId:r.empId, name:r.name, department:r.department};
-      localStorage.setItem('dakoku_user', JSON.stringify(currentUser));
-      showApp();
-    } else {
-      msg.className='auth-msg msg-err'; msg.textContent=r.message;
-    }
-  } catch(e) {
-    msg.className='auth-msg msg-err'; msg.textContent='接続エラー。URLを確認してください';
-  }
-}
-
-// ---- 新規登録 ----
-async function doRegister() {
-  const name  = document.getElementById('reg-name').value.trim();
-  const email = document.getElementById('reg-email').value.trim();
-  const dept  = document.getElementById('reg-dept').value.trim();
-  const pass  = document.getElementById('reg-pass').value;
-  const msg   = document.getElementById('reg-msg');
-  if (!name||!email||!pass) { msg.className='auth-msg msg-err'; msg.textContent='必須項目を入力してください'; return; }
-  if (pass.length < 6) { msg.className='auth-msg msg-err'; msg.textContent='パスワードは6文字以上にしてください'; return; }
-  msg.className='auth-msg'; msg.textContent='登録中...';
-  try {
-    const r = await callAPI({action:'register', name, email, department:dept, password:pass});
-    if (r.success) {
-      msg.className='auth-msg msg-ok'; msg.textContent='登録完了！ログインしてください（社員ID: ' + r.empId + '）';
-      switchAuthTab('login');
-    } else {
-      msg.className='auth-msg msg-err'; msg.textContent=r.message;
-    }
-  } catch(e) {
-    msg.className='auth-msg msg-err'; msg.textContent='接続エラー。URLを確認してください';
-  }
-}
-
-// ---- ログアウト ----
-function doLogout() {
-  currentUser = null;
-  localStorage.removeItem('dakoku_user');
-  document.getElementById('auth-wrap').style.display = 'flex';
-  document.getElementById('app-wrap').style.display = 'none';
-}
-
-// ---- アプリ表示 ----
-function showApp() {
-  document.getElementById('auth-wrap').style.display = 'none';
-  document.getElementById('app-wrap').style.display = 'block';
-  document.getElementById('user-name-disp').textContent = currentUser.name;
-  document.getElementById('user-dept-disp').textContent = currentUser.department || '所属なし';
-  document.getElementById('user-avatar').textContent = currentUser.name.charAt(0);
-  records = JSON.parse(localStorage.getItem('dakoku_rec_' + currentUser.empId) || '[]');
-  todayLog = JSON.parse(localStorage.getItem('dakoku_log_' + currentUser.empId) || '[]');
-  renderTodayLog(); renderHistory(); renderReport();
-}
-
-// ---- 打刻 ----
-async function punch(type) {
-  const t = new Date();
-  const time = t.toTimeString().slice(0,5);
-  const dateStr = t.getFullYear()+'/'+String(t.getMonth()+1).padStart(2,'0')+'/'+String(t.getDate()).padStart(2,'0');
-  const entry = {type, time, date:dateStr, ts:t.getTime()};
-  todayLog.push(entry);
-  localStorage.setItem('dakoku_log_'+currentUser.empId, JSON.stringify(todayLog));
-
-  // ローカル記録
-  if (type==='出勤') {
-    records = records.filter(r=>r.date!==dateStr);
-    records.push({date:dateStr, name:currentUser.name, checkin:time, checkout:null, breaks:[], tsIn:t.getTime()});
-  } else if (type==='退勤') {
-    const rec=records.find(r=>r.date===dateStr);
-    if(rec){rec.checkout=time;rec.tsOut=t.getTime();}
-  } else if (type==='休憩開始') {
-    const rec=records.find(r=>r.date===dateStr);
-    if(rec) rec.breaks.push({start:time,tsStart:t.getTime()});
-  } else if (type==='休憩終了') {
-    const rec=records.find(r=>r.date===dateStr);
-    if(rec&&rec.breaks.length){const b=rec.breaks[rec.breaks.length-1];if(!b.end){b.end=time;b.tsEnd=t.getTime();}}
-  }
-  localStorage.setItem('dakoku_rec_'+currentUser.empId, JSON.stringify(records));
-
-  const statusColors={'出勤':'#1D9E75','休憩開始':'#B07A10','休憩終了':'#185FA5','退勤':'#9E9C96'};
-  const statusLabels={'出勤':'勤務中','休憩開始':'休憩中','休憩終了':'勤務中（休憩後）','退勤':'退勤済み'};
-  document.getElementById('status-dot').style.background = statusColors[type]||'#888';
-  document.getElementById('status-label').textContent = statusLabels[type]||type;
-
-  renderTodayLog(); renderHistory(); renderReport();
-  showToast(type + ' を記録しました');
-
-  // スプレッドシートへ送信
-  syncToSheet(type, time);
-}
-
-async function syncToSheet(type, time) {
-  const ss = document.getElementById('sync-status');
-  const sd = document.getElementById('sync-dot');
-  const st = document.getElementById('sync-text');
-  ss.style.display = 'flex';
-  sd.className = 'sync-dot';
-  st.textContent = '同期中...';
-  try {
-    const r = await callAPI({action:'punch', empId:currentUser.empId, name:currentUser.name, type, time});
-    if (r.success) { st.textContent = '同期済み ✓'; }
-    else { sd.className='sync-dot err'; st.textContent='同期失敗: '+r.message; }
-  } catch(e) {
-    sd.className='sync-dot err'; st.textContent='オフライン（ローカルに保存済み）';
-  }
-}
-
-function renderTodayLog() {
-  const el=document.getElementById('today-log');
-  if(!todayLog.length){el.innerHTML='<div class="empty">打刻記録はありません</div>';return;}
-  el.innerHTML=todayLog.map(e=>`<div class="log-item"><span class="log-type">${e.type}</span><span class="log-time">${e.time}</span></div>`).join('');
-  el.scrollTop=el.scrollHeight;
-}
-
-function calcWork(rec){
-  if(!rec.tsIn||!rec.tsOut)return null;
-  let total=rec.tsOut-rec.tsIn,bms=0;
-  (rec.breaks||[]).forEach(b=>{if(b.tsStart&&b.tsEnd)bms+=b.tsEnd-b.tsStart;});
-  return Math.max(0,total-bms);
-}
-function msToH(ms){return (ms/3600000).toFixed(1);}
-
-function renderHistory(){
-  const tbody=document.getElementById('history-body');
-  if(!records.length){tbody.innerHTML='<tr><td colspan="5" class="empty">記録がありません</td></tr>';return;}
-  const sorted=[...records].sort((a,b)=>b.tsIn-a.tsIn);
-  let days=0,totalMs=0;
-  tbody.innerHTML=sorted.map(r=>{
-    const wms=calcWork(r);const wh=wms?msToH(wms)+'h':'-';
-    if(wms){days++;totalMs+=wms;}
-    const badge=!r.checkout?'<span class="badge badge-now">勤務中</span>':wms&&wms<6*3600000?'<span class="badge badge-short">短時間</span>':'<span class="badge badge-ok">正常</span>';
-    return `<tr><td>${r.date}</td><td>${r.checkin||'-'}</td><td>${r.checkout||'-'}</td><td>${wh}</td><td>${badge}</td></tr>`;
-  }).join('');
-  document.getElementById('m-days').textContent=days;
-  document.getElementById('m-hours').textContent=msToH(totalMs)+'h';
-  document.getElementById('m-avg').textContent=days?(totalMs/days/3600000).toFixed(1)+'h':'0h';
-}
-
-function renderReport(){
-  const t=new Date();const year=t.getFullYear(),month=t.getMonth();
-  const mk=year+'/'+String(month+1).padStart(2,'0');
-  const mr=records.filter(r=>r.date.startsWith(mk));
-  let days=0,totalMs=0,bm=0;
-  mr.forEach(r=>{const wms=calcWork(r);if(wms){days++;totalMs+=wms;}(r.breaks||[]).forEach(b=>{if(b.tsStart&&b.tsEnd)bm+=b.tsEnd-b.tsStart;});});
-  const ot=Math.max(0,totalMs-8*3600000*days);
-  document.getElementById('r-month').textContent=year+'年'+(month+1)+'月';
-  document.getElementById('r-days').textContent=days+'日';
-  document.getElementById('r-total').textContent=msToH(totalMs)+'時間';
-  document.getElementById('r-avg').textContent=days?(totalMs/days/3600000).toFixed(1)+'時間':'0時間';
-  document.getElementById('r-break').textContent=Math.round(bm/60000)+'分';
-  document.getElementById('r-overtime').textContent=msToH(ot)+'時間';
-  renderCalendar(t);
-}
-
-function renderCalendar(d){
-  const cal=document.getElementById('cal-grid');
-  const year=d.getFullYear(),month=d.getMonth();
-  const first=new Date(year,month,1).getDay(),last=new Date(year,month+1,0).getDate();
-  let html=['日','月','火','水','木','金','土'].map(x=>`<div class="cal-head">${x}</div>`).join('');
-  for(let i=0;i<first;i++)html+='<div></div>';
-  for(let n=1;n<=last;n++){
-    const ds=year+'/'+String(month+1).padStart(2,'0')+'/'+String(n).padStart(2,'0');
-    const rec=records.find(r=>r.date===ds);
-    let cls='cal-day';
-    if(n===d.getDate())cls+=' cal-today';
-    if(rec&&rec.checkout)cls+=' cal-in';else if(rec)cls+=' cal-wip';
-    html+=`<div class="${cls}">${n}</div>`;
-  }
-  cal.innerHTML=html;
-}
-
-function exportCSV(){
-  if(!records.length){showToast('データがありません');return;}
-  const sorted=[...records].sort((a,b)=>a.tsIn-b.tsIn);
-  let csv='\uFEFF氏名,日付,出勤,退勤,労働時間(h),休憩(min)\n';
-  sorted.forEach(r=>{
-    const wms=calcWork(r);const wh=wms?msToH(wms):'';
-    let bm=0;(r.breaks||[]).forEach(b=>{if(b.tsStart&&b.tsEnd)bm+=b.tsEnd-b.tsStart;});
-    csv+=`${r.name},${r.date},${r.checkin||''},${r.checkout||''},${wh},${Math.round(bm/60000)}\n`;
-  });
-  const a=document.createElement('a');
-  a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv'}));
-  a.download='打刻記録_'+new Date().toLocaleDateString('ja-JP').replace(/\//g,'-')+'.csv';
-  a.click(); showToast('CSVを出力しました');
-}
-
-function switchTab(i){
-  document.querySelectorAll('.tab').forEach((t,j)=>t.classList.toggle('active',i===j));
-  document.querySelectorAll('.page').forEach((p,j)=>p.classList.toggle('active',i===j));
-  if(i===1)renderReport();
-}
-
-function showToast(msg){
-  const t=document.getElementById('toast');
-  t.textContent=msg;t.classList.add('show');
-  setTimeout(()=>t.classList.remove('show'),2500);
-}
+function updateClock(){const d=new Date();document.getElementById('clock').textContent=d.toTimeString().slice(0,8);document.getElementById('today-date').textContent=d.toLocaleDateString('ja-JP',{year:'numeric',month:'long',day:'numeric',weekday:'long'});}
+function switchAuthTab(tab){document.querySelectorAll('.auth-tab').forEach((t,i)=>t.classList.toggle('active',(tab==='login'&&i===0)||(tab==='register'&&i===1)));document.getElementById('login-form').style.display=tab==='login'?'block':'none';document.getElementById('register-form').style.display=tab==='register'?'block':'none';}
+async function callAPI(data){const res=await fetch(GAS_URL,{method:'POST',body:JSON.stringify(data)});return await res.json();}
+async function doLogin(){const email=document.getElementById('login-email').value.trim(),pass=document.getElementById('login-pass').value,msg=document.getElementById('login-msg');if(!email||!pass){msg.className='auth-msg msg-err';msg.textContent='入力してください';return;}msg.className='auth-msg';msg.textContent='確認中...';try{const r=await callAPI({action:'login',email,password:pass});if(r.success){currentUser={empId:r.empId,name:r.name,department:r.department};localStorage.setItem('dakoku_user',JSON.stringify(currentUser));showApp();}else{msg.className='auth-msg msg-err';msg.textContent=r.message;}}catch(e){msg.className='auth-msg msg-err';msg.textContent='接続エラー。URLを確認してください';}}
+async function doRegister(){const name=document.getElementById('reg-name').value.trim(),email=document.getElementById('reg-email').value.trim(),dept=document.getElementById('reg-dept').value.trim(),pass=document.getElementById('reg-pass').value,msg=document.getElementById('reg-msg');if(!name||!email||!pass){msg.className='auth-msg msg-err';msg.textContent='必須項目を入力してください';return;}if(pass.length<6){msg.className='auth-msg msg-err';msg.textContent='パスワードは6文字以上にしてください';return;}msg.className='auth-msg';msg.textContent='登録中...';try{const r=await callAPI({action:'register',name,email,department:dept,password:pass});if(r.success){msg.className='auth-msg msg-ok';msg.textContent='登録完了！ログインしてください（社員ID: '+r.empId+'）';switchAuthTab('login');}else{msg.className='auth-msg msg-err';msg.textContent=r.message;}}catch(e){msg.className='auth-msg msg-err';msg.textContent='接続エラー。URLを確認してください';}}
+function doLogout(){currentUser=null;localStorage.removeItem('dakoku_user');document.getElementById('auth-wrap').style.display='flex';document.getElementById('app-wrap').style.display='none';}
+function showApp(){document.getElementById('auth-wrap').style.display='none';document.getElementById('app-wrap').style.display='block';document.getElementById('user-name-disp').textContent=currentUser.name;document.getElementById('user-dept-disp').textContent=currentUser.department||'所属なし';document.getElementById('user-avatar').textContent=currentUser.name.charAt(0);records=JSON.parse(localStorage.getItem('dakoku_rec_'+currentUser.empId)||'[]');todayLog=JSON.parse(localStorage.getItem('dakoku_log_'+currentUser.empId)||'[]');renderTodayLog();renderHistory();renderReport();}
+async function punch(type){const t=new Date(),time=t.toTimeString().slice(0,5),dateStr=t.getFullYear()+'/'+String(t.getMonth()+1).padStart(2,'0')+'/'+String(t.getDate()).padStart(2,'0');todayLog.push({type,time,date:dateStr,ts:t.getTime()});localStorage.setItem('dakoku_log_'+currentUser.empId,JSON.stringify(todayLog));if(type==='出勤'){records=records.filter(r=>r.date!==dateStr);records.push({date:dateStr,name:currentUser.name,checkin:time,checkout:null,breaks:[],tsIn:t.getTime()});}else if(type==='退勤'){const rec=records.find(r=>r.date===dateStr);if(rec){rec.checkout=time;rec.tsOut=t.getTime();}}else if(type==='休憩開始'){const rec=records.find(r=>r.date===dateStr);if(rec)rec.breaks.push({start:time,tsStart:t.getTime()});}else if(type==='休憩終了'){const rec=records.find(r=>r.date===dateStr);if(rec&&rec.breaks.length){const b=rec.breaks[rec.breaks.length-1];if(!b.end){b.end=time;b.tsEnd=t.getTime();}}}localStorage.setItem('dakoku_rec_'+currentUser.empId,JSON.stringify(records));const sc={'出勤':'#4A85C8','休憩開始':'#B07A10','休憩終了':'#0D3B7A','退勤':'#9E9C96'},sl={'出勤':'勤務中','休憩開始':'休憩中','休憩終了':'勤務中（休憩後）','退勤':'退勤済み'};document.getElementById('status-dot').style.background=sc[type]||'#888';document.getElementById('status-label').textContent=sl[type]||type;renderTodayLog();renderHistory();renderReport();showToast(type+' を記録しました');syncToSheet(type,time);}
+async function syncToSheet(type,time){const ss=document.getElementById('sync-status'),sd=document.getElementById('sync-dot'),st=document.getElementById('sync-text');ss.style.display='flex';sd.className='sync-dot';st.textContent='同期中...';try{const r=await callAPI({action:'punch',empId:currentUser.empId,name:currentUser.name,type,time});if(r.success){st.textContent='同期済み ✓';}else{sd.className='sync-dot err';st.textContent='同期失敗: '+r.message;}}catch(e){sd.className='sync-dot err';st.textContent='オフライン（ローカルに保存済み）';}}
+function renderTodayLog(){const el=document.getElementById('today-log');if(!todayLog.length){el.innerHTML='<div class="empty">打刻記録はありません</div>';return;}el.innerHTML=todayLog.map(e=>`<div class="log-item"><span class="log-type">${e.type}</span><span class="log-time">${e.time}</span></div>`).join('');el.scrollTop=el.scrollHeight;}
+function calcWork(rec){if(!rec.tsIn||!rec.tsOut)return null;let total=rec.tsOut-rec.tsIn,bms=0;(rec.breaks||[]).forEach(b=>{if(b.tsStart&&b.tsEnd)bms+=b.tsEnd-b.tsStart;});return Math.max(0,total-bms);}
+function msToH(ms){return(ms/3600000).toFixed(1);}
+function renderHistory(){const tbody=document.getElementById('history-body');if(!records.length){tbody.innerHTML='<tr><td colspan="5" class="empty">記録がありません</td></tr>';return;}const sorted=[...records].sort((a,b)=>b.tsIn-a.tsIn);let days=0,totalMs=0;tbody.innerHTML=sorted.map(r=>{const wms=calcWork(r),wh=wms?msToH(wms)+'h':'-';if(wms){days++;totalMs+=wms;}const badge=!r.checkout?'<span class="badge badge-now">勤務中</span>':wms&&wms<6*3600000?'<span class="badge badge-short">短時間</span>':'<span class="badge badge-ok">正常</span>';return`<tr><td>${r.date}</td><td>${r.checkin||'-'}</td><td>${r.checkout||'-'}</td><td>${wh}</td><td>${badge}</td></tr>`;}).join('');document.getElementById('m-days').textContent=days;document.getElementById('m-hours').textContent=msToH(totalMs)+'h';document.getElementById('m-avg').textContent=days?(totalMs/days/3600000).toFixed(1)+'h':'0h';}
+function renderReport(){const t=new Date(),year=t.getFullYear(),month=t.getMonth(),mk=year+'/'+String(month+1).padStart(2,'0'),mr=records.filter(r=>r.date.startsWith(mk));let days=0,totalMs=0,bm=0;mr.forEach(r=>{const wms=calcWork(r);if(wms){days++;totalMs+=wms;}(r.breaks||[]).forEach(b=>{if(b.tsStart&&b.tsEnd)bm+=b.tsEnd-b.tsStart;});});const ot=Math.max(0,totalMs-8*3600000*days);document.getElementById('r-month').textContent=year+'年'+(month+1)+'月';document.getElementById('r-days').textContent=days+'日';document.getElementById('r-total').textContent=msToH(totalMs)+'時間';document.getElementById('r-avg').textContent=days?(totalMs/days/3600000).toFixed(1)+'時間':'0時間';document.getElementById('r-break').textContent=Math.round(bm/60000)+'分';document.getElementById('r-overtime').textContent=msToH(ot)+'時間';renderCalendar(t);}
+function renderCalendar(d){const cal=document.getElementById('cal-grid'),year=d.getFullYear(),month=d.getMonth(),first=new Date(year,month,1).getDay(),last=new Date(year,month+1,0).getDate();let html=['日','月','火','水','木','金','土'].map(x=>`<div class="cal-head">${x}</div>`).join('');for(let i=0;i<first;i++)html+='<div></div>';for(let n=1;n<=last;n++){const ds=year+'/'+String(month+1).padStart(2,'0')+'/'+String(n).padStart(2,'0'),rec=records.find(r=>r.date===ds);let cls='cal-day';if(n===d.getDate())cls+=' cal-today';if(rec&&rec.checkout)cls+=' cal-in';else if(rec)cls+=' cal-wip';html+=`<div class="${cls}">${n}</div>`;}cal.innerHTML=html;}
+function exportCSV(){if(!records.length){showToast('データがありません');return;}const sorted=[...records].sort((a,b)=>a.tsIn-b.tsIn);let csv='\uFEFF氏名,日付,出勤,退勤,労働時間(h),休憩(min)\n';sorted.forEach(r=>{const wms=calcWork(r),wh=wms?msToH(wms):'';let bm=0;(r.breaks||[]).forEach(b=>{if(b.tsStart&&b.tsEnd)bm+=b.tsEnd-b.tsStart;});csv+=`${r.name},${r.date},${r.checkin||''},${r.checkout||''},${wh},${Math.round(bm/60000)}\n`;});const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv'}));a.download='打刻記録_'+new Date().toLocaleDateString('ja-JP').replace(/\//g,'-')+'.csv';a.click();showToast('CSVを出力しました');}
+function switchTab(i){document.querySelectorAll('.tab').forEach((t,j)=>t.classList.toggle('active',i===j));document.querySelectorAll('.page').forEach((p,j)=>p.classList.toggle('active',i===j));if(i===1)renderReport();}
+function showToast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2500);}
 </script>
 </body>
 </html>
